@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel AI - Agent Immune System</title>
+    <link rel="stylesheet" href="/frontend/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>🛡️ Sentinel AI</h1>
+        <p>Enterprise Agent Immune System Dashboard</p>
+    </header>
+    
+    <div class="container">
+        <!-- Left Panel: Ticket Input -->
+        <div class="panel ticket-panel">
+            <h2>Support Ticket</h2>
+            <select id="ticket-selector">
+                <option value="">-- Load a Sample Ticket --</option>
+            </select>
+            <div class="button-group">
+                <button id="btn-safe" class="btn-primary">Load Safe Ticket</button>
+                <button id="btn-attack" class="btn-danger">Load Attack Ticket</button>
+            </div>
+            <textarea id="ticket-input" placeholder="Type or load a support ticket here..."></textarea>
+            <button id="btn-process" class="btn-process">Process Ticket</button>
+        </div>
+
+        <!-- Center Panel: Immune System Processing -->
+        <div class="panel decision-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
+                <h2 style="margin: 0; border: none; padding: 0;">Immune System Analysis</h2>
+                <button id="btn-view-spec" class="btn-secondary" style="margin: 0; flex: 0 1 auto; width: auto;">View Agent Spec</button>
+            </div>
+            <div id="processing-indicator" class="hidden">Processing through safety layers...</div>
+            
+            <div id="results-container" class="hidden">
+                <div class="result-box agent-box">
+                    <h3>1. Agent Intent</h3>
+                    <p><strong>Action:</strong> <span id="res-action"></span></p>
+                    <p><strong>Reason:</strong> <span id="res-agent-reason"></span></p>
+                </div>
+                
+                <div class="result-box rule-box">
+                    <h3>2. Deterministic Rules</h3>
+                    <p><strong>Decision:</strong> <span id="res-rule"></span></p>
+                </div>
+                
+                <div class="result-box judge-box">
+                    <h3>3. LLM Safety Judge</h3>
+                    <div id="res-judge-checks" class="judge-checks"></div>
+                    <p style="margin-top: 10px;"><strong>Risk Level:</strong> <span id="res-risk"></span></p>
+                </div>
+                
+                <div class="result-box final-box" id="final-decision-box">
+                    <h3>4. Final Decision</h3>
+                    <h1 id="res-final"></h1>
+                    <p id="res-final-reason"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Logs -->
+        <div class="panel log-panel">
+            <h2>Audit Log</h2>
+            <button id="btn-refresh-logs" class="btn-secondary">Refresh Logs</button>
+            <div id="log-container">
+                <!-- Logs will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Agent Spec Modal -->
+    <div id="spec-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 style="margin-top: 0; color: white;">Agent Specification</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;"><strong>Role:</strong> IT Support Assistant</p>
+            <div class="spec-lists">
+                <div class="spec-list allowed-list">
+                    <h3 style="color: var(--success); margin-top: 0;">Allowed</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="color: var(--success); margin-bottom: 8px;">✓ Unlock Account</li>
+                        <li style="color: var(--success); margin-bottom: 8px;">✓ Reset Password</li>
+                        <li style="color: var(--success); margin-bottom: 8px;">✓ Check Status</li>
+                    </ul>
+                </div>
+                <div class="spec-list forbidden-list">
+                    <h3 style="color: var(--danger); margin-top: 0;">Forbidden</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="color: var(--danger); margin-bottom: 8px;">✗ Delete Account</li>
+                        <li style="color: var(--danger); margin-bottom: 8px;">✗ Delete Database</li>
+                        <li style="color: var(--danger); margin-bottom: 8px;">✗ Reveal Secrets</li>
+                        <li style="color: var(--danger); margin-bottom: 8px;">✗ Ignore System Prompt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/frontend/script.js"></script>
+</body>
+</html>
